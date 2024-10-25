@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Personal Finance Tracker</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f0f4f8, #e7eef3);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #2980b9;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3498db;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .remember-me {
+            margin: 10px 0;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            const usernameField = document.getElementById("username");
+            const passwordField = document.getElementById("password");
+
+            // Load saved credentials if available
+            const savedUsername = localStorage.getItem("username");
+            const savedPassword = localStorage.getItem("password");
+
+            if (savedUsername) {
+                usernameField.value = savedUsername;
+                passwordField.value = savedPassword;
+            }
+
+            // Remember Me functionality
+            document.getElementById("remember").addEventListener("change", function() {
+                if (this.checked) {
+                    localStorage.setItem("username", usernameField.value);
+                    localStorage.setItem("password", passwordField.value);
+                } else {
+                    localStorage.removeItem("username");
+                    localStorage.removeItem("password");
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <style>
+        /* General styling for the navbar */
+        .navbar {
+            background-color: #4A90E2; /* Main color for the navbar */
+            padding: 15px; /* Vertical padding */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width of the page */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    
+        .navbar-brand {
+            font-size: 28px; /* Larger font for the brand */
+            color: #fff; /* White text for the brand */
+            font-weight: bold; /* Bold font for emphasis */
+            letter-spacing: 1px; /* Space between letters */
+            flex-grow: 1; /* Allow the brand to take available space */
+        }
+    
+        .navbar-links {
+            display: flex; /* Flexbox for horizontal alignment */
+        }
+    
+        .nav-link {
+            color: #fff; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Margin between links */
+            padding: 10px 15px; /* Padding for a button-like appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+        }
+    
+        /* Hover effects for links */
+        .nav-link:hover {
+            background-color: #357ABD; /* Darker shade on hover */
+            color: #FFD700; /* Gold color on hover */
+        }
+    
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack links vertically */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-link {
+                margin: 5px 0; /* Adjust margins for stacked layout */
+                padding: 8px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    <div class="container">
+        <h1>Login</h1>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <form action="/login" method="POST">
+            <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="remember-me">
+                <label>
+                    <input type="checkbox" id="remember">
+                    Remember Me
+                </label>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <p>Don't have an account? <a href="/register">Register Here</a>.</p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Personal Finance Tracker. All rights reserved.</p>
+    </div>
+</body>
+</html>

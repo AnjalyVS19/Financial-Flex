@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Flex</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f0f4f8, #e7eef3);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #34495e;
+            margin: 20px 0 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 10px 5px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #3498db;
+            transform: scale(1.05);
+        }
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .quotes {
+            background: #ecf0f1;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .quote {
+            font-style: italic;
+            color: #2c3e50;
+            margin: 10px 0;
+            padding: 10px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            .button {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <style>
+        /* General styling for the navbar */
+        .navbar {
+            background-color: #4A90E2; /* Main color for the navbar */
+            padding: 15px; /* Vertical padding */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width of the page */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    
+        .navbar-brand {
+            font-size: 28px; /* Larger font for the brand */
+            color: #fff; /* White text for the brand */
+            font-weight: bold; /* Bold font for emphasis */
+            letter-spacing: 1px; /* Space between letters */
+            flex-grow: 1; /* Allow the brand to take available space */
+        }
+    
+        .navbar-links {
+            display: flex; /* Flexbox for horizontal alignment */
+        }
+    
+        .nav-link {
+            color: #fff; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Margin between links */
+            padding: 10px 15px; /* Padding for a button-like appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+        }
+    
+        /* Hover effects for links */
+        .nav-link:hover {
+            background-color: #357ABD; /* Darker shade on hover */
+            color: #FFD700; /* Gold color on hover */
+        }
+    
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack links vertically */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-link {
+                margin: 5px 0; /* Adjust margins for stacked layout */
+                padding: 8px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    <div class="container">
+        <h1>Welcome to Personal Finance Tracker</h1>
+        <div class="card">
+            <p style="text-align: justify;">The Personal Finance Tracker is designed to help users set financial goals, manage expenses, and track their savings. The main features of the tracker focus on giving users a clear picture of their finances and helping them make informed decisions to achieve their financial goals.</p>
+        </div>
+        
+        <div class="quotes">
+            <h2>Inspiration for Your Journey</h2>
+            <div class="quote" style="text-align: justify;" >"The future belongs to those who believe in the beauty of their dreams." - Eleanor Roosevelt</div>
+            <div class="quote" style="text-align: justify;">"Do not save what is left after spending, but spend what is left after saving." - Warren Buffett</div>
+            <div class="quote" style="text-align: justify;">"Success is not just about what you accomplish in your life, it's about what you inspire others to do." - Unknown</div>
+            <div class="quote" style="text-align: justify;">"Financial freedom is available to those who learn about it and work for it." - Robert Kiyosaki</div>
+            <div class="quote" style="text-align: justify;">"A budget is telling your money where to go instead of wondering where it went." - Dave Ramsey</div>
+        </div>
+
+        <div style="text-align: center;">
+            <a class="button" href="/login">Login</a>
+            <a class="button" href="/register">Register</a>
+            <a class="button" href="/about">About Us</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Personal Finance Tracker. All rights reserved.</p>
+    </div>
+</body>
+</html>

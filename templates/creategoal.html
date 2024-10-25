@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Goal</title>
+    <style>
+        /* Base styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 70px; /* Ensures space below navbar */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #666;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #4a90e2;
+            background-color: #eef7ff;
+        }
+
+        /* Button styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #357ab9;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: #4A90E2;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-size: 28px;
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .navbar-links {
+            display: flex;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            margin-left: 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #357ABD;
+            color: #FFD700;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/home2" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <div class="form-container">
+        <h1>Create a New Goal</h1>
+        <form id="goalForm">
+            <label for="goal_name">Goal Name:</label>
+            <input type="text" id="goal_name" name="goal_name" placeholder="e.g., New Laptop" required>
+
+            <label for="dream_amount">Goal Amount:</label>
+            <input type="number" id="dream_amount" name="dream_amount" placeholder="e.g., 500" required>
+
+            <label for="dream_date">Target Date:</label>
+            <input type="date" id="dream_date" name="dream_date" required>
+
+            <button type="submit">Save Goal</button>
+        </form>
+    </div>
+
+    <script>
+        const goalForm = document.getElementById('goalForm');
+
+        // Save the goal to localStorage
+        goalForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const goalName = document.getElementById('goal_name').value;
+            const dreamAmount = document.getElementById('dream_amount').value;
+            const dreamDate = document.getElementById('dream_date').value;
+
+            const newGoal = {
+                name: goalName,
+                amount: parseFloat(dreamAmount),
+                date: dreamDate
+            };
+
+            // Get existing goals from localStorage, add the new goal, and save
+            const goals = JSON.parse(localStorage.getItem('goals')) || [];
+            goals.push(newGoal);
+            localStorage.setItem('goals', JSON.stringify(goals));
+
+            // Redirect back to the main calendar page
+            window.location.href = '/mydreams';
+        });
+    </script>
+</body>
+</html>

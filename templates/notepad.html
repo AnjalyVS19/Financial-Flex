@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .expense-form, .expense-list {
+            max-width: 500px;
+            margin: 10px auto;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .monthly-expenses {
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        .monthly-expenses:last-child {
+            border-bottom: none;
+        }
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .total-amount {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/home2" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <style>
+        /* General styling for the navbar */
+        .navbar {
+            background-color: #4A90E2; /* Main color for the navbar */
+            padding: 15px; /* Vertical padding */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width of the page */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    
+        .navbar-brand {
+            font-size: 28px; /* Larger font for the brand */
+            color: #fff; /* White text for the brand */
+            font-weight: bold; /* Bold font for emphasis */
+            letter-spacing: 1px; /* Space between letters */
+            flex-grow: 1; /* Allow the brand to take available space */
+        }
+    
+        .navbar-links {
+            display: flex; /* Flexbox for horizontal alignment */
+        }
+    
+        .nav-link {
+            color: #fff; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Margin between links */
+            padding: 10px 15px; /* Padding for a button-like appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+        }
+    
+        /* Hover effects for links */
+        .nav-link:hover {
+            background-color: #357ABD; /* Darker shade on hover */
+            color: #FFD700; /* Gold color on hover */
+        }
+    
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack links vertically */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-link {
+                margin: 5px 0; /* Adjust margins for stacked layout */
+                padding: 8px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    <h1>Monthly Expense Tracker</h1>
+
+    <div class="expense-form">
+        <input type="text" id="expenseName" placeholder="Expense Description">
+        <input type="number" id="expenseAmount" placeholder="Amount (₹)">
+        <button onclick="addExpense()">Add Expense</button>
+    </div>
+
+    <div class="expense-list" id="expenseList"></div>
+
+    <script>
+        let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+        function saveExpenses() {
+            localStorage.setItem('expenses', JSON.stringify(expenses));
+        }
+
+        function addExpense() {
+            const name = document.getElementById('expenseName').value.trim();
+            const amount = parseFloat(document.getElementById('expenseAmount').value);
+            const date = new Date().toISOString().slice(0, 10); // Save the date in YYYY-MM-DD format
+
+            if (name && !isNaN(amount) && amount > 0) {
+                expenses.push({ name, amount, date });
+                saveExpenses();
+                displayExpenses();
+                document.getElementById('expenseName').value = '';
+                document.getElementById('expenseAmount').value = '';
+            } else {
+                alert("Please enter a valid description and amount.");
+            }
+        }
+
+        function deleteExpense(index) {
+            expenses.splice(index, 1);
+            saveExpenses();
+            displayExpenses();
+        }
+
+        function displayExpenses() {
+            const expenseList = document.getElementById('expenseList');
+            expenseList.innerHTML = '';
+
+            const groupedExpenses = groupByMonth(expenses);
+
+            for (const [month, monthExpenses] of Object.entries(groupedExpenses)) {
+                const monthDiv = document.createElement('div');
+                monthDiv.classList.add('monthly-expenses');
+
+                const monthTitle = document.createElement('h2');
+                monthTitle.textContent = `${month} - Total: ₹${calculateTotal(monthExpenses).toFixed(2)}`;
+                monthTitle.classList.add('total-amount');
+
+                monthDiv.appendChild(monthTitle);
+
+                monthExpenses.forEach((expense, index) => {
+                    const expenseItem = document.createElement('div');
+                    expenseItem.classList.add('expense-item');
+
+                    const expenseText = document.createElement('span');
+                    expenseText.textContent = `${expense.date} - ${expense.name}: ₹${expense.amount.toFixed(2)}`;
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.classList.add('delete-btn');
+                    deleteButton.onclick = () => {
+                        deleteExpense(expenses.indexOf(expense));
+                    };
+
+                    expenseItem.appendChild(expenseText);
+                    expenseItem.appendChild(deleteButton);
+                    monthDiv.appendChild(expenseItem);
+                });
+
+                expenseList.appendChild(monthDiv);
+            }
+        }
+
+        function groupByMonth(expenses) {
+            return expenses.reduce((groups, expense) => {
+                const month = new Date(expense.date).toLocaleString('default', { year: 'numeric', month: 'long' });
+                if (!groups[month]) groups[month] = [];
+                groups[month].push(expense);
+                return groups;
+            }, {});
+        }
+
+        function calculateTotal(expenses) {
+            return expenses.reduce((total, expense) => total + expense.amount, 0);
+        }
+
+        // Display expenses on page load
+        displayExpenses();
+    </script>
+</body>
+</html>

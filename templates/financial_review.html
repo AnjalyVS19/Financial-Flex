@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h4 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            color: #3498db;
+            border-color: #3498db;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+    </style>
+    <script>
+        function toggleTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`button[data-tab="${tabId}"]`).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/home2" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <style>
+        /* General styling for the navbar */
+        .navbar {
+            background-color: #4A90E2; /* Main color for the navbar */
+            padding: 15px; /* Vertical padding */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width of the page */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    
+        .navbar-brand {
+            font-size: 28px; /* Larger font for the brand */
+            color: #fff; /* White text for the brand */
+            font-weight: bold; /* Bold font for emphasis */
+            letter-spacing: 1px; /* Space between letters */
+            flex-grow: 1; /* Allow the brand to take available space */
+        }
+    
+        .navbar-links {
+            display: flex; /* Flexbox for horizontal alignment */
+        }
+    
+        .nav-link {
+            color: #fff; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Margin between links */
+            padding: 10px 15px; /* Padding for a button-like appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+        }
+    
+        /* Hover effects for links */
+        .nav-link:hover {
+            background-color: #357ABD; /* Darker shade on hover */
+            color: #FFD700; /* Gold color on hover */
+        }
+    
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack links vertically */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-link {
+                margin: 5px 0; /* Adjust margins for stacked layout */
+                padding: 8px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    <div class="container">
+
+        <!-- Financial Review Tab -->
+        <div class="tab-content active" id="financial-review">
+            <h4 >Financial Review</h4>
+            <form method="POST" action="/month">  
+                <label for="income">Monthly Income</label>
+                <input type="number" id="income" name="income" required>
+                
+                <h4>Fixed Expenses</h4>
+                <ul>
+                    <li>
+                        <label for="rent">Rent/Accommodation</label>
+                        <input type="number" id="rent" name="rent" required>
+                    </li>
+                    <li>
+                        <label for="utilities">Utilities (electricity, water, internet)</label>
+                        <input type="number" id="utilities" name="utilities" required>
+                    </li>
+                    <li>
+                        <label for="groceries">Groceries</label>
+                        <input type="number" id="groceries" name="groceries" required>
+                    </li>
+                    <li>
+                        <label for="credit_loan">Credit Card/Loan</label>
+                        <input type="number" id="credit_loan" name="credit_loan" required>
+                    </li>
+                    <li>
+                        <label for="other_expenses">Other Fixed Expenses</label>
+                        <input type="number" id="other_expenses" name="other_expenses" required>
+                    </li>
+                </ul>
+                <div>
+                    <button type="submit" name="review_type" value="daily" formaction="/daily">Daily Review</button>
+                    <button type="submit" name="review_type" value="weekly" formaction="/weekly">Weekly Review</button>
+                    <button type="submit" name="review_type" value="monthly" formaction="/month">Monthly Review</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Dream Goal Tab -->
+        <div class="tab-content" id="dream-goal">
+            <h4>Dream Goal</h4>
+            <p>Set your dream savings goal and track progress with daily, weekly, or monthly savings targets. Plan for major life goals by setting aside small amounts over time!</p>
+            <!-- Placeholder content for Dream Goal tab -->
+            <p>Feature under construction.</p>
+        </div>
+
+        <!-- Expense Tracker Tab -->
+        <div class="tab-content" id="expense-tracker">
+            <h4>Expense Tracker</h4>
+            <p>Log daily expenses to monitor your spending habits and adjust your budget effectively. Keep an eye on where your money goes to stay in control of your finances.</p>
+            <!-- Placeholder content for Expense Tracker tab -->
+            <p>Feature under construction.</p>
+        </div>
+    </div>
+</body>
+</html>

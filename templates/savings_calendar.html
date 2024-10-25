@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Savings Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .section-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .section {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            margin-top: 15px;
+        }
+
+        .buttons-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4a90e2;
+            color: white;
+            margin: 10px 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buttons-container button:hover {
+            background-color: #357ab9;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .day {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .day:hover {
+            transform: scale(1.05);
+        }
+
+        .goal-section {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-brand">Financial Flex</div>
+        <div class="navbar-links">
+            <a href="/home2" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About Us</a>
+            <a href="/services" class="nav-link">Services</a>
+        </div>
+    </div>
+    
+    <style>
+        /* General styling for the navbar */
+        .navbar {
+            background-color: #4A90E2; /* Main color for the navbar */
+            padding: 15px; /* Vertical padding */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+            width: 100%; /* Full width of the page */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+        }
+    
+        .navbar-brand {
+            font-size: 28px; /* Larger font for the brand */
+            color: #fff; /* White text for the brand */
+            font-weight: bold; /* Bold font for emphasis */
+            letter-spacing: 1px; /* Space between letters */
+            flex-grow: 1; /* Allow the brand to take available space */
+        }
+    
+        .navbar-links {
+            display: flex; /* Flexbox for horizontal alignment */
+        }
+    
+        .nav-link {
+            color: #fff; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Margin between links */
+            padding: 10px 15px; /* Padding for a button-like appearance */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+        }
+    
+        /* Hover effects for links */
+        .nav-link:hover {
+            background-color: #357ABD; /* Darker shade on hover */
+            color: #FFD700; /* Gold color on hover */
+        }
+    
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .navbar-links {
+                flex-direction: column; /* Stack links vertically */
+                margin-top: 10px; /* Space above the links */
+            }
+            
+            .nav-link {
+                margin: 5px 0; /* Adjust margins for stacked layout */
+                padding: 8px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+    <h1>Dream Savings Calendar</h1>
+
+    <div class="section-container">
+        
+        <!-- Section 1: Create New Goal -->
+        <div class="section">
+            <h2>Create Your Dream Goal</h2>
+            <p>Ready to save towards your dream? Set up a new savings goal and create a customized daily savings plan that leads you to your dream achievement. Define your goal, specify the amount, and set a target date.</p>
+            <div class="buttons-container">
+                <button onclick="window.location.href = '/creategoal';">Create New Goal</button>
+            </div>
+        </div>
+        
+        <!-- Section 2: My Dreams -->
+        <div class="section">
+            <h2>My Dreams</h2>
+            <p>Explore your active savings goals and track your progress. Each goal comes with a personalized calendar to mark your daily savings and stay on track. Let’s get closer to making your dreams come true!</p>
+            <div class="buttons-container">
+                <button onclick="window.location.href = '/mydreams';">View My Dreams</button>
+            </div>
+            
+            <!-- Display Goals and Calendar -->
+            <div id="goalsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const goalsContainer = document.getElementById('goalsContainer');
+        const goals = [];
+
+        // Function to display goals in My Dreams section
+        function displayGoals() {
+            goalsContainer.innerHTML = '';
+            goals.forEach((goal, index) => {
+                const goalSection = document.createElement('div');
+                goalSection.classList.add('goal-section');
+                goalSection.innerHTML = `
+                    <h4>Savings Calendar for ${goal.name}</h4>
+                    <div class="calendar" id="calendar_${index}"></div>
+                `;
+                goalsContainer.appendChild(goalSection);
+                generateCalendar(goal.date, goal.amount, `calendar_${index}`);
+            });
+        }
+
+        // Function to generate the savings calendar for each goal
+        function generateCalendar(dreamDate, dreamAmount, calendarId) {
+            const calendar = document.getElementById(calendarId);
+            calendar.innerHTML = '';
+            const today = new Date();
+            const targetDate = new Date(dreamDate);
+            const totalDays = Math.ceil((targetDate - today) / (1000 * 60 * 60 * 24));
+            const dailySavings = (dreamAmount / totalDays).toFixed(2);
+
+            for (let i = 0; i < totalDays; i++) {
+                const day = new Date(today);
+                day.setDate(today.getDate() + i);
+                const dayDiv = document.createElement('div');
+                dayDiv.classList.add('day');
+                dayDiv.innerHTML = `
+                    <div>${day.toDateString()}</div>
+                    <input type="checkbox" id="check_${calendarId}_${i}" />
+                    <label for="check_${calendarId}_${i}">Save ${dailySavings}</label>
+                `;
+                calendar.appendChild(dayDiv);
+            }
+        }
+    </script>
+</body>
+</html>
