@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Personal Finance Tracker</title>
     <style>
-        /* Main body styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -16,7 +15,6 @@
             height: 100vh;
         }
 
-        /* Navigation bar styling */
         .navbar {
             background-color: #4A90E2;
             padding: 15px;
@@ -49,7 +47,6 @@
             color: #FFD700;
         }
 
-        /* Registration container styling */
         .container {
             background: white;
             padding: 20px;
@@ -99,7 +96,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <div class="navbar">
         <div class="navbar-brand">Financial Flex</div>
         <div class="navbar-links">
@@ -109,7 +105,6 @@
         </div>
     </div>
     
-    <!-- Registration form -->
     <div class="container">
         <h1>Register</h1>
         <form id="registerForm" action="/register" method="POST"> 
@@ -137,7 +132,6 @@
         <p>Already have an account? <a href="/login">Login Here</a>.</p>
     </div>
 
-    <!-- JavaScript for password validation -->
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             const password = document.getElementById('password').value;
