@@ -62,7 +62,6 @@
             margin-bottom: 15px;
         }
 
-        /* Tab Navigation */
         .tabs {
             display: flex;
             justify-content: center;
@@ -82,7 +81,6 @@
             border-color: #3498db;
         }
 
-        /* Tab Content */
         .tab-content {
             display: none;
         }
@@ -93,10 +91,8 @@
     </style>
     <script>
         function toggleTab(tabId) {
-            // Hide all tabs
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
-            // Show selected tab
             document.getElementById(tabId).classList.add('active');
             document.querySelector(`button[data-tab="${tabId}"]`).classList.add('active');
         }
@@ -113,61 +109,56 @@
     </div>
     
     <style>
-        /* General styling for the navbar */
         .navbar {
-            background-color: #4A90E2; /* Main color for the navbar */
-            padding: 15px; /* Vertical padding */
-            display: flex; /* Flexbox for layout */
-            justify-content: space-between; /* Space between brand and links */
-            align-items: center; /* Center items vertically */
-            width: 100%; /* Full width of the page */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            background-color: #4A90E2; 
+            padding: 15px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
         }
     
         .navbar-brand {
-            font-size: 28px; /* Larger font for the brand */
-            color: #fff; /* White text for the brand */
-            font-weight: bold; /* Bold font for emphasis */
-            letter-spacing: 1px; /* Space between letters */
-            flex-grow: 1; /* Allow the brand to take available space */
+            font-size: 28px; 
+            color: #fff; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            flex-grow: 1;
         }
     
         .navbar-links {
-            display: flex; /* Flexbox for horizontal alignment */
+            display: flex; 
         }
     
         .nav-link {
-            color: #fff; /* White text for links */
-            text-decoration: none; /* Remove underline */
-            font-size: 16px; /* Font size */
-            margin-left: 20px; /* Margin between links */
-            padding: 10px 15px; /* Padding for a button-like appearance */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+            color: #fff; 
+            text-decoration: none;
+            font-size: 16px; /
+            padding: 10px 15px;
+            border-radius: 5px; 
+            transition: background-color 0.3s, color 0.3s; 
         }
     
-        /* Hover effects for links */
         .nav-link:hover {
-            background-color: #357ABD; /* Darker shade on hover */
-            color: #FFD700; /* Gold color on hover */
+            background-color: #357ABD; 
+            color: #FFD700; 
         }
     
-        /* Responsive behavior */
         @media (max-width: 768px) {
             .navbar-links {
-                flex-direction: column; /* Stack links vertically */
-                margin-top: 10px; /* Space above the links */
+                flex-direction: column; 
+                margin-top: 10px; 
             }
             
             .nav-link {
-                margin: 5px 0; /* Adjust margins for stacked layout */
-                padding: 8px 10px; /* Adjust padding for smaller screens */
+                margin: 5px 0; 
+                padding: 8px 10px; 
             }
         }
     </style>
     <div class="container">
 
-        <!-- Financial Review Tab -->
         <div class="tab-content active" id="financial-review">
             <h4 >Financial Review</h4>
             <form method="POST" action="/month">  
@@ -205,19 +196,15 @@
             </form>
         </div>
 
-        <!-- Dream Goal Tab -->
         <div class="tab-content" id="dream-goal">
             <h4>Dream Goal</h4>
             <p>Set your dream savings goal and track progress with daily, weekly, or monthly savings targets. Plan for major life goals by setting aside small amounts over time!</p>
-            <!-- Placeholder content for Dream Goal tab -->
             <p>Feature under construction.</p>
         </div>
 
-        <!-- Expense Tracker Tab -->
         <div class="tab-content" id="expense-tracker">
             <h4>Expense Tracker</h4>
             <p>Log daily expenses to monitor your spending habits and adjust your budget effectively. Keep an eye on where your money goes to stay in control of your finances.</p>
-            <!-- Placeholder content for Expense Tracker tab -->
             <p>Feature under construction.</p>
         </div>
     </div>
