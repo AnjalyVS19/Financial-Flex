@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-users = {}  # Replace with a database in a production environment
+users = {}  
 
 @app.route('/')
 def home():
@@ -16,7 +16,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if username in users and check_password_hash(users[username], password):
-            session['username'] = username  # Store session info
+            session['username'] = username 
             return redirect('/home2')
         else:
             flash('Invalid Username or Password')
@@ -32,8 +32,8 @@ def register():
         
         if username not in users:
             users[username] = generate_password_hash(password)
-            flash('Registration successful!')  # Optional: Flash message for successful registration
-            return redirect('/home2')  # Redirect to the home2 page
+            flash('Registration successful!') 
+            return redirect('/home2') 
         else:
             flash('Username already exists!') 
             return redirect('/register')
@@ -100,7 +100,7 @@ def calculate_review():
                            entertainment=entertainment,
                            personal_use=personal_use,
                            emergency=emergency,
-                           dream=dream)  # Include dream in the return values
+                           dream=dream)  
 
 @app.route('/daily', methods=['POST'])
 def calculate_daily_review():
@@ -123,7 +123,7 @@ def calculate_daily_review():
     entertainment = daily_amount * 0.10
     personal_use = daily_amount * 0.10
     emergency = daily_amount * 0.10
-    dream = daily_amount * 0.20  # Add dream allocation
+    dream = daily_amount * 0.20  
 
     return render_template('daily.html', 
                            remaining_amount=daily_amount,
@@ -131,8 +131,8 @@ def calculate_daily_review():
                            entertainment=entertainment,
                            personal_use=personal_use,
                            emergency=emergency,
-                           dream=dream)  # Include dream in the return values
-
+                           dream=dream) 
+    
 @app.route('/weekly', methods=['POST'])
 def calculate_weekly_review():
     income = float(request.form['income'])
@@ -154,7 +154,7 @@ def calculate_weekly_review():
     entertainment = weekly_amount * 0.10
     personal_use = weekly_amount * 0.10
     emergency = weekly_amount * 0.10
-    dream = weekly_amount * 0.20  # Add dream allocation
+    dream = weekly_amount * 0.20  
 
     return render_template('weekly.html', 
                            remaining_amount=weekly_amount,
@@ -162,8 +162,7 @@ def calculate_weekly_review():
                            entertainment=entertainment,
                            personal_use=personal_use,
                            emergency=emergency,
-                           dream=dream)  # Include dream in the return values
-
+                           dream=dream)  
 
 @app.route('/savings_calendar', methods=['POST'])
 def calculate_dream():
