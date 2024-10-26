@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Goal</title>
     <style>
-        /* Base styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f6f9;
@@ -26,7 +25,6 @@
             margin-bottom: 20px;
         }
 
-        /* Form styling */
         .form-container {
             width: 100%;
             max-width: 400px;
@@ -35,7 +33,7 @@
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            margin-top: 70px; /* Ensures space below navbar */
+            margin-top: 70px; 
         }
 
         label {
@@ -68,7 +66,6 @@
             background-color: #eef7ff;
         }
 
-        /* Button styling */
         button[type="submit"] {
             width: 100%;
             padding: 12px;
@@ -86,7 +83,6 @@
             background-color: #357ab9;
         }
 
-        /* Navbar styling */
         .navbar {
             background-color: #4A90E2;
             padding: 15px;
@@ -126,7 +122,6 @@
             color: #FFD700;
         }
 
-        /* Responsive behavior */
         @media (max-width: 768px) {
             .navbar-links {
                 flex-direction: column;
@@ -169,7 +164,6 @@
     <script>
         const goalForm = document.getElementById('goalForm');
 
-        // Save the goal to localStorage
         goalForm.addEventListener('submit', (event) => {
             event.preventDefault();
             const goalName = document.getElementById('goal_name').value;
@@ -182,12 +176,10 @@
                 date: dreamDate
             };
 
-            // Get existing goals from localStorage, add the new goal, and save
             const goals = JSON.parse(localStorage.getItem('goals')) || [];
             goals.push(newGoal);
             localStorage.setItem('goals', JSON.stringify(goals));
 
-            // Redirect back to the main calendar page
             window.location.href = '/mydreams';
         });
     </script>
