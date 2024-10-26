@@ -107,55 +107,52 @@
     </div>
     
     <style>
-        /* General styling for the navbar */
         .navbar {
-            background-color: #4A90E2; /* Main color for the navbar */
-            padding: 15px; /* Vertical padding */
-            display: flex; /* Flexbox for layout */
-            justify-content: space-between; /* Space between brand and links */
-            align-items: center; /* Center items vertically */
-            width: 100%; /* Full width of the page */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            background-color: #4A90E2; 
+            padding: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            width: 100%; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
         }
     
         .navbar-brand {
-            font-size: 28px; /* Larger font for the brand */
-            color: #fff; /* White text for the brand */
-            font-weight: bold; /* Bold font for emphasis */
-            letter-spacing: 1px; /* Space between letters */
-            flex-grow: 1; /* Allow the brand to take available space */
+            font-size: 28px; 
+            color: #fff; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            flex-grow: 1; 
         }
     
         .navbar-links {
-            display: flex; /* Flexbox for horizontal alignment */
+            display: flex;
         }
     
         .nav-link {
-            color: #fff; /* White text for links */
-            text-decoration: none; /* Remove underline */
-            font-size: 16px; /* Font size */
-            margin-left: 20px; /* Margin between links */
-            padding: 10px 15px; /* Padding for a button-like appearance */
-            border-radius: 5px; /* Rounded corners */
-            transition: background-color 0.3s, color 0.3s; /* Transition effects */
+            color: #fff;
+            text-decoration: none; 
+            font-size: 16px; 
+            margin-left: 20px; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            transition: background-color 0.3s, color 0.3s; 
         }
     
-        /* Hover effects for links */
         .nav-link:hover {
-            background-color: #357ABD; /* Darker shade on hover */
-            color: #FFD700; /* Gold color on hover */
+            background-color: #357ABD;
+            color: #FFD700; 
         }
     
-        /* Responsive behavior */
         @media (max-width: 768px) {
             .navbar-links {
-                flex-direction: column; /* Stack links vertically */
-                margin-top: 10px; /* Space above the links */
+                flex-direction: column;
+                margin-top: 10px; 
             }
             
             .nav-link {
-                margin: 5px 0; /* Adjust margins for stacked layout */
-                padding: 8px 10px; /* Adjust padding for smaller screens */
+                margin: 5px 0; 
+                padding: 8px 10px; 
             }
         }
     </style>
@@ -163,7 +160,6 @@
 
     <div class="section-container">
         
-        <!-- Section 1: Create New Goal -->
         <div class="section">
             <h2>Create Your Dream Goal</h2>
             <p>Ready to save towards your dream? Set up a new savings goal and create a customized daily savings plan that leads you to your dream achievement. Define your goal, specify the amount, and set a target date.</p>
@@ -172,7 +168,6 @@
             </div>
         </div>
         
-        <!-- Section 2: My Dreams -->
         <div class="section">
             <h2>My Dreams</h2>
             <p>Explore your active savings goals and track your progress. Each goal comes with a personalized calendar to mark your daily savings and stay on track. Let’s get closer to making your dreams come true!</p>
@@ -180,7 +175,6 @@
                 <button onclick="window.location.href = '/mydreams';">View My Dreams</button>
             </div>
             
-            <!-- Display Goals and Calendar -->
             <div id="goalsContainer"></div>
         </div>
     </div>
@@ -189,7 +183,6 @@
         const goalsContainer = document.getElementById('goalsContainer');
         const goals = [];
 
-        // Function to display goals in My Dreams section
         function displayGoals() {
             goalsContainer.innerHTML = '';
             goals.forEach((goal, index) => {
@@ -204,7 +197,6 @@
             });
         }
 
-        // Function to generate the savings calendar for each goal
         function generateCalendar(dreamDate, dreamAmount, calendarId) {
             const calendar = document.getElementById(calendarId);
             calendar.innerHTML = '';
